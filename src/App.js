@@ -1,23 +1,64 @@
 import logo from './logo.svg';
 import './App.css';
+import { useEffect, useState} from 'react';
+
 
 function App() {
+ 
+ 
+
+const [inp, setInp] = useState(
+  {
+    name: "",
+    gen: "",
+    ph: '',
+    usn: "",
+    age: ''
+  }
+);
+
+
+const [shldisv, setShldisv]= useState(false);
+
+const handlechange = (event) => {
+ const newObject = {
+  ...inp,
+  name: event.target.value
+  //usn: inp.usn,
+  //gen: inp.gen,
+  //ph: inp.ph,
+  //age: inp.age
+ }
+
+ setInp(newObject)
+}
+const handledata = () => {
+  setShldisv(true);
+}
+//const namee = () => {
+//return ()
+//}
+
+
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <input placeholder="name" onChange={handlechange} value={inp.name}/>
+
+
+      {
+        shldisv
+        ?
+        <h1>{inp.name}</h1>
+        :
+        null
+      }
+
+
+      
+      <button onClick={handledata}> show name</button>
+
     </div>
   );
 }
